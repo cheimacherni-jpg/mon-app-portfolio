@@ -4,9 +4,10 @@
  */
 
 import React, { useState } from "react";
-import { Phone, Mail, GraduationCap, Briefcase, Award, Download, X, Printer, Sparkles, Star, CheckCircle } from "lucide-react";
+import { Phone, Mail, GraduationCap, Briefcase, Award, Download, X, Printer, Sparkles, Star, CheckCircle, Eye, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Formation, Experience } from "../types";
+import { generateAndDownloadCVPDF } from "../lib/cvPdf";
 
 // Import the anime style generated assets
 import cheimaWelcome from "../assets/images/regenerated_image_1784849101795.png";
@@ -22,7 +23,7 @@ const formations: Formation[] = [
   {
     id: "f1",
     degree: "Certification professionnelle Web",
-    school: "la toile - EM Lyon Business School",
+    school: "La toile - EM Lyon Business School",
     year: "2026",
     details: "Conception et Développement Web - UX/UI Webdesign - Gestion de projet digital - Culture Web"
   },
@@ -104,25 +105,10 @@ export default function Presentation({ onTabChange }: PresentationProps) {
     <div id="presentation-container" className="flex flex-col gap-5 py-1 select-text font-sans">
       
       {/* 1. Welcome Profile Card with Detached Overlapping Avatar */}
-      <div id="profile-card" className="bg-white border border-secondary-sky/40 shadow-soft rounded-2xl p-4 sm:p-5 relative mt-8 pt-12 w-full max-w-[296px] mx-auto">
+      <div id="profile-card" className="bg-white border border-secondary-sky/40 shadow-soft rounded-2xl p-4 sm:p-5 relative mt-8 pt-12 w-full max-w-full mx-auto">
         
         {/* DETACHED OVERLAPPING AVATAR - Welcoming Fist Pump Pose */}
-        <div className="absolute -top-11 -right-2 w-28 h-28 rounded-full border-2 border-secondary-sky/40 bg-white overflow-hidden shadow-soft-lg z-20">
-          <img
-            src={cheimaWelcome}
-            alt="Cheïma Cherni Welcoming"
-            className="w-full h-full object-cover scale-110 mix-blend-multiply"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-
-        {/* Sparingly Used Golden Accent Status Badge */}
-        <div className="absolute -top-3 left-4 bg-primary-navy text-accent-gold border border-primary-navy px-2.5 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider flex items-center gap-1 z-10">
-          <Star size={9} className="fill-accent-gold stroke-accent-gold" />
-          Creative Tech
-        </div>
-
-        <div className="flex flex-col pr-16">
+        <div className="flex flex-col">
           <span className="text-[13px] font-mono tracking-wider text-primary-navy/50 uppercase font-black">Mon Profil</span>
           <h1 className="text-[25px] font-display font-bold text-primary-navy leading-none mt-1">Cheïma Cherni</h1>
           <p className="text-2xs font-bold text-primary-navy/70 mt-0 pt-[13px] font-mono">Digital & Numérique</p>
@@ -132,21 +118,21 @@ export default function Presentation({ onTabChange }: PresentationProps) {
           Dynamique et toujours motivée, découvrez mon univers à travers mes projets et mes réalisations. Polyvalentes et variées, mes réalisations sont à l’image de mes compétences.
         </p>
 
-        {/* CV Download CTA Button */}
+        {/* CV View CTA Button */}
         <div className="mt-4 flex justify-center">
           <button
             id="download-cv-btn"
             onClick={() => setIsCVModalOpen(true)}
-            className="w-[238px] mx-auto py-1 px-4 bg-primary-navy hover:bg-primary-navy/90 text-white rounded-xl text-[13px] leading-[29px] font-display font-bold shadow-soft flex items-center justify-center gap-2 cursor-pointer transition-transform active:scale-[0.98]"
+            className="w-[238px] max-w-full mx-auto py-1 px-4 bg-primary-navy hover:bg-primary-navy/90 text-white rounded-xl text-[13px] leading-[29px] font-display font-bold shadow-soft flex items-center justify-center gap-2 cursor-pointer transition-transform active:scale-[0.98]"
           >
-            <Download size={14} className="text-secondary-sky shrink-0" />
-            TÉLÉCHARGER MON CV
+            <Eye size={15} className="text-secondary-sky shrink-0" />
+            VOIR MON CV
           </button>
         </div>
       </div>
 
       {/* Quick Contact Widget using native protocols */}
-      <div id="contact-widget" className="flex flex-col gap-2.5 w-full max-w-[296px] mx-auto">
+      <div id="contact-widget" className="flex flex-col gap-2.5 w-full max-w-full mx-auto">
         <a
           id="contact-call-link"
           href="tel:0749985320"
@@ -179,7 +165,7 @@ export default function Presentation({ onTabChange }: PresentationProps) {
       {/* 2. Skills Section */}
       <div 
         id="skills-section" 
-        className="bg-white border border-secondary-sky/30 shadow-soft rounded-2xl p-4 sm:p-5 relative overflow-hidden w-full max-w-[296px] mx-auto"
+        className="bg-white border border-secondary-sky/30 shadow-soft rounded-2xl p-4 sm:p-5 relative overflow-hidden w-full max-w-full mx-auto"
       >
         <div className="flex items-center gap-2 mb-4 pb-2 border-b border-secondary-sky/20">
           <Award className="text-primary-navy" size={14} />
@@ -220,7 +206,7 @@ export default function Presentation({ onTabChange }: PresentationProps) {
       {/* 2.5 SOFTWARE Section - Styled exactly like the user's photo with custom high-fidelity SVG logos */}
       <div 
         id="software-section" 
-        className="bg-white border border-[#D2BCA6]/50 shadow-soft rounded-2xl p-4 sm:p-5 relative mt-6 pt-8 pb-5 flex flex-col items-center w-full max-w-[296px] mx-auto"
+        className="bg-white border border-[#D2BCA6]/50 shadow-soft rounded-2xl p-4 sm:p-5 relative mt-6 pt-8 pb-5 flex flex-col items-center w-full max-w-full mx-auto"
       >
         {/* Floating blue header tab matching the photo */}
         <div className="absolute -top-4.5 left-1/2 transform -translate-x-1/2 bg-[#C6E5F7] border border-[#A8D3F0] px-8 py-1.5 rounded-xl shadow-soft-sm">
@@ -296,7 +282,7 @@ export default function Presentation({ onTabChange }: PresentationProps) {
 
 
       {/* Experiences Section */}
-      <div id="experiences-section" className="bg-white border border-secondary-sky/30 shadow-soft rounded-2xl p-5 w-full max-w-[296px] mx-auto">
+      <div id="experiences-section" className="bg-white border border-secondary-sky/30 shadow-soft rounded-2xl p-5 w-full max-w-full mx-auto">
         <div className="flex items-center gap-2 mb-4 pb-2 border-b border-secondary-sky/10">
           <Briefcase className="text-primary-navy" size={14} />
           <h2 className="text-xs font-display font-bold text-primary-navy uppercase tracking-wider">Parcours Professionnel</h2>
@@ -328,7 +314,7 @@ export default function Presentation({ onTabChange }: PresentationProps) {
       </div>
 
       {/* Formations Section */}
-      <div id="formations-section" className="bg-white border border-secondary-sky/30 shadow-soft rounded-2xl p-5 w-full max-w-[296px] mx-auto mb-6">
+      <div id="formations-section" className="bg-white border border-secondary-sky/30 shadow-soft rounded-2xl p-5 w-full max-w-full mx-auto mb-6">
         <div className="flex items-center gap-2 mb-4 pb-2 border-b border-secondary-sky/10">
           <GraduationCap className="text-primary-navy" size={14} />
           <h2 className="text-xs font-display font-bold text-primary-navy uppercase tracking-wider">Études & Formations</h2>
@@ -371,21 +357,21 @@ export default function Presentation({ onTabChange }: PresentationProps) {
               initial={{ scale: 0.95, y: 15 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 15 }}
-              className="bg-white w-full max-w-[420px] max-h-[90vh] rounded-2xl flex flex-col shadow-soft-lg border border-secondary-sky/30 overflow-hidden"
+              className="bg-white w-full max-w-[440px] max-h-[78vh] rounded-2xl flex flex-col shadow-soft-lg border border-secondary-sky/30 overflow-hidden my-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal header */}
               <div className="flex items-center justify-between px-4 py-3 bg-primary-navy text-white">
                 <div className="flex items-center gap-2">
                   <Printer size={13} className="text-accent-gold" />
-                  <span className="font-display font-bold text-2xs uppercase tracking-wider">Curriculum Vitae</span>
+                  <span className="font-display font-bold text-2xs uppercase tracking-wider">Curriculum Vitae — Imen Cheïma CHERNI</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <button
                     id="modal-print-btn"
                     onClick={triggerPrint}
                     className="p-1.5 rounded-lg hover:bg-white/10 text-white cursor-pointer transition-colors"
-                    title="Imprimer / Exporter PDF"
+                    title="Imprimer"
                   >
                     <Printer size={13} />
                   </button>
@@ -400,93 +386,175 @@ export default function Presentation({ onTabChange }: PresentationProps) {
               </div>
 
               {/* CV Body to Scroll/View */}
-              <div className="flex-1 overflow-y-auto p-4 custom-scrollbar bg-bg-peach text-primary-navy select-text">
-                <div className="border border-secondary-sky/25 rounded-xl p-4 bg-white shadow-soft">
-                  {/* CV Mini header */}
-                  <div className="text-center pb-3 border-b border-secondary-sky/20 mb-3">
-                    <h2 className="text-sm font-display font-bold uppercase tracking-tight text-primary-navy">Cheïma Cherni</h2>
-                    <p className="text-[9px] font-mono text-primary-navy/60 font-bold mt-0.5">Product Designer & React Dev</p>
-                    <p className="text-[8px] font-mono text-primary-navy/40 mt-1">
-                      chema.cherni@gmail.com | 07 49 98 53 20 | Île-de-France
-                    </p>
+              <div className="flex-1 overflow-y-auto p-3 sm:p-5 custom-scrollbar bg-white text-black select-text">
+                <div id="printable-cv-document" className="bg-white p-2 sm:p-3 text-black font-sans">
+                  {/* Top Pills Bar */}
+                  <div className="flex flex-wrap gap-1.5 justify-center sm:justify-start mb-4 text-[9px] sm:text-[10px] font-bold">
+                    <span className="border border-black rounded-full px-2.5 py-0.5 bg-white">📍 Lyon</span>
+                    <span className="border border-black rounded-full px-2.5 py-0.5 bg-white">📞 07 49 98 53 20</span>
+                    <span className="border border-black rounded-full px-2.5 py-0.5 bg-white">✉️ chema.cherni@gmail.com</span>
+                    <a href="https://www.linkedin.com/in/che%C3%AFma-cherni/" target="_blank" rel="noopener noreferrer" className="border border-black rounded-full px-2.5 py-0.5 bg-white hover:bg-black/5">🔗 Profil LinkedIn</a>
                   </div>
 
-                  {/* Bio */}
-                  <div className="mb-3">
-                    <h3 className="text-[8px] font-mono font-bold uppercase tracking-wider text-primary-navy/50 mb-1 border-b border-secondary-sky/10 pb-0.5">Profil</h3>
-                    <p className="text-[10px] text-primary-navy/80 leading-relaxed font-sans">
-                      Créative et technophile de 23 ans. Spécialiste dans la fusion de chartes graphiques complexes, 
-                      de codes d'interfaces dynamiques et de logistiques événementielles haut de gamme.
-                    </p>
-                  </div>
-
-                  {/* Experience */}
-                  <div className="mb-3">
-                    <h3 className="text-[8px] font-mono font-bold uppercase tracking-wider text-primary-navy/50 mb-1 border-b border-secondary-sky/10 pb-0.5">Expérience</h3>
-                    <div className="space-y-2">
-                      <div>
-                        <div className="flex justify-between items-baseline">
-                          <h4 className="text-[10px] font-bold font-display">Alternante Product Designer & Dev React</h4>
-                          <span className="text-[8px] font-mono text-primary-navy/40 font-bold">2024 - Présent</span>
-                        </div>
-                        <p className="text-[9px] font-mono font-semibold text-primary-navy/50">Oxygène Agence Digitale, Paris</p>
-                      </div>
-                      <div>
-                        <div className="flex justify-between items-baseline">
-                          <h4 className="text-[10px] font-bold font-display">Chef de Projet Évènementiel & Designer</h4>
-                          <span className="text-[8px] font-mono text-primary-navy/40 font-bold">2022 - Présent</span>
-                        </div>
-                        <p className="text-[9px] font-mono font-semibold text-primary-navy/50">Freelance, Paris</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Education */}
-                  <div className="mb-3">
-                    <h3 className="text-[8px] font-mono font-bold uppercase tracking-wider text-primary-navy/50 mb-1.5 border-b border-secondary-sky/10 pb-0.5">Études</h3>
-                    <div className="space-y-1.5">
-                      <div>
-                        <div className="flex justify-between items-baseline">
-                          <h4 className="text-[10px] font-bold font-display">Master DA & UX/UI Design</h4>
-                          <span className="text-[8px] font-mono text-primary-navy/40 font-bold">2024 - 2026</span>
-                        </div>
-                        <p className="text-[9px] font-mono font-semibold text-primary-navy/50">L'École Multimédia, Paris</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Skills Grid on CV */}
-                  <div className="grid grid-cols-2 gap-3 pt-2 border-t border-secondary-sky/20">
+                  {/* Header Title & Photo */}
+                  <div className="flex items-start justify-between gap-2 mb-3">
                     <div>
-                      <h4 className="text-[8px] font-mono font-bold uppercase text-primary-navy/50 mb-1">Compétences clés</h4>
-                      <ul className="list-disc list-inside text-[9px] text-primary-navy/80 space-y-0.5 font-sans">
-                        <li>Figma / UX/UI</li>
-                        <li>React / TypeScript</li>
-                        <li>Tailwind CSS</li>
-                      </ul>
+                      <h2 className="text-xl sm:text-2xl font-extrabold text-black font-sans tracking-tight leading-none">Imen, Cheïma</h2>
+                      <h1 className="text-2xl sm:text-3xl font-extrabold text-[#4F80E2] font-sans tracking-tight leading-tight -mt-0.5">CHERNI</h1>
+                      <div className="mt-2 bg-black text-white px-3 py-1 font-bold text-[10px] sm:text-xs rounded-r-lg inline-block shadow-sm">
+                        Assistante en Projet digitaux et numérique
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="text-[8px] font-mono font-bold uppercase text-primary-navy/50 mb-1">Atouts</h4>
-                      <ul className="list-disc list-inside text-[9px] text-primary-navy/80 space-y-0.5 font-sans">
-                        <li>Créative & Innovante</li>
-                        <li>Sens de la rigueur</li>
-                      </ul>
+                    <div className="w-20 h-24 sm:w-24 sm:h-28 rounded-2xl overflow-hidden border-2 border-black/10 shrink-0 bg-secondary-sky/20 shadow-sm">
+                      <img src={cheimaWelcome} alt="Imen Cheïma CHERNI" className="w-full h-full object-cover" />
+                    </div>
+                  </div>
+
+                  <hr className="border-t-2 border-black my-3" />
+
+                  {/* Sub-header / Intro Banner */}
+                  <div className="text-[9.5px] sm:text-[10.5px] text-black/90 font-medium leading-snug my-2">
+                    Diplômée d'un BAC +3, et en pleine réorientation dans le numérique, je poursuis en <strong>alternance</strong> en <strong>conception pédagogique et e-learning</strong>, en intégrant la formation <strong>Digital Learning</strong> au sein de Le Bahut à Lyon. Une nouvelle aventure commence !
+                  </div>
+
+                  <hr className="border-t-2 border-black my-3" />
+
+                  {/* Two Columns Layout */}
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mt-3">
+                    {/* LEFT COLUMN: EXPÉRIENCES */}
+                    <div className="md:col-span-7 space-y-3">
+                      <h3 className="text-sm font-extrabold text-[#4F80E2] font-sans uppercase tracking-wider flex items-center gap-1.5">
+                        <span className="p-1 bg-[#D97706]/15 rounded text-[#D97706] text-xs">💼</span>
+                        EXPÉRIENCES
+                      </h3>
+
+                      <div className="space-y-3 text-[9px] sm:text-[10px]">
+                        {/* Exp 1 */}
+                        <div>
+                          <h4 className="font-bold text-[#4F80E2] text-[11px]">◆ LA TOILE</h4>
+                          <p className="font-bold text-black text-[10px] -mt-0.5">em lyon | mars - juillet 2026</p>
+                          <ul className="list-disc list-inside space-y-0.5 text-black/80 mt-1 pl-1">
+                            <li><strong>Projets de groupe</strong>
+                              <ul className="list-circle list-inside pl-3 space-y-0.5 font-normal">
+                                <li>Réalisation de wireframes, UI/UX Design et prototypage - tests utilisateurs</li>
+                                <li>Amélioration continue de l'application</li>
+                              </ul>
+                            </li>
+                            <li><strong>Hackathon</strong> et mise en situation professionnelle sur des cas réels d'entreprise</li>
+                          </ul>
+                        </div>
+
+                        {/* Exp 2 */}
+                        <div>
+                          <h4 className="font-bold text-[#4F80E2] text-[11px]">◆ BUSINESS DEVELOPER JUNIOR</h4>
+                          <p className="font-bold text-black text-[10px] -mt-0.5">Kalygma | avr - juil 2024 | stage</p>
+                          <ul className="list-disc list-inside space-y-0.5 text-black/80 mt-1 pl-1">
+                            <li>Création et gestion d'une base de données clients</li>
+                            <li>Prospection téléphonique en BtoB (région AURA)</li>
+                          </ul>
+                        </div>
+
+                        {/* Exp 3 */}
+                        <div>
+                          <h4 className="font-bold text-[#4F80E2] text-[11px]">◆ SALES ACCOUNT MANAGER</h4>
+                          <p className="font-bold text-black text-[10px] -mt-0.5">GoStudent | oct 2023 - jan 2024 | alternance</p>
+                          <ul className="list-disc list-inside space-y-0.5 text-black/80 mt-1 pl-1">
+                            <li>Gestion de la relation client et CRM</li>
+                            <li>Organisation des premières sessions d'essai des élèves-professeurs</li>
+                          </ul>
+                        </div>
+
+                        {/* Exp 4 */}
+                        <div>
+                          <h4 className="font-bold text-[#4F80E2] text-[11px]">◆ CONSULTANTE JUNIOR MARKETING & COM</h4>
+                          <p className="font-bold text-black text-[10px] -mt-0.5">Institut de langue arabe | juil - sep 2022 | stage</p>
+                          <ul className="list-disc list-inside space-y-0.5 text-black/80 mt-1 pl-1">
+                            <li>Création de plan de communication et de stratégie marketing</li>
+                            <li>Organisation Journée Portes Ouvertes</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* RIGHT COLUMN: FORMATION, COMPÉTENCES, LANGUES */}
+                    <div className="md:col-span-5 space-y-4">
+                      {/* FORMATION */}
+                      <div>
+                        <h3 className="text-sm font-extrabold text-[#4F80E2] font-sans uppercase tracking-wider flex items-center gap-1.5 mb-2">
+                          <span className="p-1 bg-[#4F80E2]/15 rounded text-[#4F80E2] text-xs">🎓</span>
+                          FORMATION
+                        </h3>
+                        <div className="space-y-2 text-[9px] sm:text-[10px]">
+                          <div>
+                            <h4 className="font-bold text-[#4F80E2] text-[10px] leading-tight">◆ CERTIFICAT PROFESSIONNEL CONCEPTION ET DÉVELOPPEMENT WEB</h4>
+                            <p className="font-bold text-black text-[9.5px]">La toile - em lyon | 2026</p>
+                            <ul className="list-disc list-inside text-black/80 pl-1 mt-0.5">
+                              <li>UX/UI DESIGN</li>
+                              <li>DÉVELOPPEMENT WEB</li>
+                            </ul>
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-[#4F80E2] text-[10px] leading-tight">◆ BUT TECHNIQUES DE COMMERCIALISATION</h4>
+                            <p className="font-bold text-black text-[9.5px]">IUT Gratte-Ciel - Lyon1 | 2024</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* COMPÉTENCES */}
+                      <div>
+                        <h3 className="text-sm font-extrabold text-[#4F80E2] font-sans uppercase tracking-wider flex items-center gap-1.5 mb-2">
+                          <span className="p-1 bg-slate-200 rounded text-slate-700 text-xs">💻</span>
+                          COMPÉTENCES
+                        </h3>
+                        <ul className="list-disc list-inside text-[9px] sm:text-[10px] space-y-0.5 text-black/90 font-medium pl-1">
+                          <li>Langages informatiques : <strong>HTML/CSS/ Javascript</strong></li>
+                          <li>Sens de l'autonomie et de l'organisation</li>
+                          <li>Travail d'équipe</li>
+                          <li><strong>Canva/Figma/Webflow/Notion/Moodle</strong></li>
+                          <li>Pédagogie & Créativité</li>
+                          <li>Aisance relationnelle - Communication</li>
+                          <li>Suite Google & Office 360</li>
+                        </ul>
+                      </div>
+
+                      {/* LANGUES */}
+                      <div>
+                        <h3 className="text-sm font-extrabold text-[#4F80E2] font-sans uppercase tracking-wider flex items-center gap-1.5 mb-2">
+                          <span className="p-1 bg-pink-100 rounded text-pink-600 text-xs">🎤</span>
+                          LANGUES
+                        </h3>
+                        <div className="text-[9px] sm:text-[10px] font-bold text-black space-y-1">
+                          <p>FRANÇAIS | LANGUE MATERNELLE</p>
+                          <p>ANGLAIS | B1-B2</p>
+                          <p>ITALIEN | B1-B2</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Modal footer print guidance */}
-              <div className="bg-primary-navy/5 p-3 px-4 border-t border-secondary-sky/10 flex justify-between items-center">
-                <p className="text-[9px] text-primary-navy/60 italic font-medium leading-tight">Sélectionnez "Enregistrer au format PDF" pour exporter.</p>
-                <button
-                  id="cv-modal-print-cta"
-                  onClick={triggerPrint}
-                  className="px-3 py-1.5 bg-primary-navy text-white text-[10px] font-display font-bold rounded-lg hover:bg-primary-navy/95 cursor-pointer flex items-center gap-1.5"
-                >
-                  <Printer size={11} />
-                  Imprimer
-                </button>
+              <div className="bg-primary-navy/5 p-2.5 px-4 border-t border-secondary-sky/10 flex justify-between items-center shrink-0">
+                <p className="text-[9px] text-primary-navy/60 italic font-medium leading-tight hidden sm:block">Aperçu officiel du CV</p>
+                <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+                  <button
+                    id="cv-modal-download-cta"
+                    onClick={generateAndDownloadCVPDF}
+                    className="px-3.5 py-1.5 bg-primary-navy text-white text-[11px] font-display font-bold rounded-lg hover:bg-primary-navy/95 cursor-pointer flex items-center gap-1.5 shadow-soft active:scale-[0.98] transition-transform"
+                  >
+                    <Download size={12} className="text-secondary-sky" />
+                    Télécharger le CV
+                  </button>
+                  <button
+                    id="cv-modal-print-cta"
+                    onClick={triggerPrint}
+                    className="px-2.5 py-1.5 bg-secondary-sky/40 text-primary-navy text-[10px] font-display font-bold rounded-lg hover:bg-secondary-sky/60 cursor-pointer flex items-center gap-1.5"
+                  >
+                    <Printer size={11} />
+                    Imprimer
+                  </button>
+                </div>
               </div>
             </motion.div>
           </motion.div>

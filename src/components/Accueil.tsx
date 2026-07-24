@@ -12,7 +12,7 @@ export default function Accueil({ onTabChange }: AccueilProps) {
       {/* 1. Lined Notebook Card with Ring Binder Spiral */}
       <div 
         id="accueil-notebook-card" 
-        className="bg-[#FFFDFB] border border-[#D2BCA6]/50 shadow-soft rounded-2xl p-6 pt-9 pl-7 relative flex flex-col items-start justify-center min-h-[175px] w-full max-w-[296px] mx-auto"
+        className="bg-[#FFFDFB] border border-[#D2BCA6]/50 shadow-soft rounded-2xl p-5 sm:p-6 pt-9 pl-7 relative flex flex-col items-start justify-center min-h-[175px] w-full max-w-full mx-auto"
         style={{ paddingBottom: "19px" }}
       >
         {/* Ring binder spiral simulation at the top of the card */}
@@ -61,7 +61,7 @@ export default function Accueil({ onTabChange }: AccueilProps) {
       </div>
 
       {/* 2. Intro Description paragraph */}
-      <div id="accueil-intro-box" className="px-1 w-full max-w-[296px] mx-auto">
+      <div id="accueil-intro-box" className="px-1 w-full max-w-full mx-auto">
         <p className="text-xs sm:text-sm text-[#3E3025]/90 leading-relaxed font-sans font-medium text-left">
           Bienvenue sur mon portfolio numérique !<br />
           Laissez-vous guider et découvrez mon univers et mes trois axes de compétences à travers mes projets réalisés, notamment au cours de mon cursus universitaire et de ma formation professionnelle.
@@ -72,13 +72,13 @@ export default function Accueil({ onTabChange }: AccueilProps) {
       <button
         id="accueil-discover-profile-btn"
         onClick={() => onTabChange?.(TabIndex.Presentation)}
-        className="w-full max-w-[296px] mx-auto bg-[#3E3025] hover:bg-[#2C2118] text-white font-mono text-xs font-bold py-3.5 px-4 rounded-xl shadow-soft transition-all duration-200 flex items-center justify-center gap-2 hover:translate-y-[-1px] active:scale-[0.98] cursor-pointer"
+        className="w-full max-w-full mx-auto bg-[#3E3025] hover:bg-[#2C2118] text-white font-mono text-xs font-bold py-3.5 px-4 rounded-xl shadow-soft transition-all duration-200 flex items-center justify-center gap-2 hover:translate-y-[-1px] active:scale-[0.98] cursor-pointer"
       >
         Découvrir mon profil →
       </button>
 
       {/* 4. Explorer les intercalaires section */}
-      <div id="accueil-shortcuts-section" className="flex flex-col gap-3 mt-2 w-full max-w-[296px] mx-auto">
+      <div id="accueil-shortcuts-section" className="flex flex-col gap-3 mt-2 w-full max-w-full mx-auto">
         <h3 className="text-[10px] font-mono font-bold tracking-widest text-[#3E3025]/60 uppercase mb-1">
           Explorer les intercalaires
         </h3>

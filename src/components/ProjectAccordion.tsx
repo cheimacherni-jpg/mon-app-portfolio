@@ -80,7 +80,10 @@ export default function ProjectAccordion({
                     
                     {/* Project Description */}
                     <div>
-                      <p className="text-[11px] text-primary-navy leading-relaxed font-sans font-medium whitespace-pre-line">
+                      <p
+                        className="text-[11px] text-primary-navy leading-relaxed font-sans font-medium whitespace-pre-line"
+                        style={project.id === "p_apptivity" ? { width: "241.555px" } : undefined}
+                      >
                         {project.description}
                       </p>
                     </div>

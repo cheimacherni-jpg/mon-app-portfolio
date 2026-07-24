@@ -139,7 +139,7 @@ export default function App() {
     <div className="w-full min-h-screen bg-[#FFF7F2] bg-anime-dots flex items-center justify-center p-0 md:p-4 font-sans text-primary-navy overflow-hidden select-none">
       
       {/* Viewport Lock Container - Mobile Device Mockup styled with deep navy borders */}
-      <div className="w-full max-w-[500px] h-screen md:h-[840px] md:max-h-[92vh] bg-white md:rounded-[40px] shadow-soft-lg relative overflow-hidden flex flex-col border-0 md:border-[10px] md:border-primary-navy ring-0 md:ring-4 md:ring-primary-navy/10">
+      <div className="w-full max-w-[500px] h-screen h-[100dvh] md:h-[840px] md:max-h-[92vh] bg-white md:rounded-[40px] shadow-soft-lg relative overflow-hidden flex flex-col border-0 md:border-[10px] md:border-primary-navy ring-0 md:ring-4 md:ring-primary-navy/10">
         
         {/* Status Bar / Notch Simulation */}
         <div className="hidden md:flex absolute top-0 left-0 right-0 h-6 bg-primary-navy items-center justify-between px-8 z-50 text-white/80 text-[10px] font-mono">
@@ -203,8 +203,8 @@ export default function App() {
           </div>
 
           {/* Main Content Area (Scrollable warm soft peach notebook paper) */}
-          <div className="flex-1 px-4 pl-12 pr-3 pb-4 overflow-y-auto custom-scrollbar select-text relative z-10 flex flex-col items-center">
-            <div className="bg-[#FFF7F2] rounded-2xl min-h-full p-4 relative overflow-visible w-full max-w-[340px]">
+          <div className="flex-1 px-3 sm:px-4 pl-10 sm:pl-12 pr-2 sm:pr-3 pb-4 overflow-y-auto custom-scrollbar select-text relative z-10 flex flex-col items-center">
+            <div className="bg-[#FFF7F2] rounded-2xl min-h-full p-3 sm:p-4 relative overflow-visible w-full max-w-full">
               
               {/* Binder Paper Stitching Line */}
               <div className="absolute left-1.5 top-0 bottom-0 w-[1px] border-l border-dashed border-secondary-sky/30" />
@@ -257,15 +257,15 @@ export default function App() {
                     {activeTab === TabIndex.Presentation && <Presentation onTabChange={handleTabChange} />}
                     
                     {activeTab !== TabIndex.Presentation && activeTab !== TabIndex.Accueil && (
-                      <div className="flex flex-col gap-4 py-1 w-full max-w-[296px] mx-auto">
+                      <div className="flex flex-col gap-4 py-1 w-full max-w-full mx-auto">
                                            {/* Section Description Header Card */}
                         {activeTab === TabIndex.UxUi ? (
                           <div id="uxui-header-card" className="p-4 bg-white border border-secondary-sky/30 shadow-soft rounded-2xl flex gap-2 items-start relative min-h-[140px] overflow-visible">
-                            <div className="z-10 flex flex-col w-[172px] max-w-[65%] shrink-0">
-                              <h2 id="uxui-header-title" className="text-[16px] sm:text-[17px] font-display font-bold text-primary-navy uppercase tracking-wider mb-1.5 leading-snug w-[171.484px] max-w-full">
+                            <div className="z-10 flex flex-col flex-1 max-w-[65%] shrink-0">
+                              <h2 id="uxui-header-title" className="text-[15px] sm:text-[17px] font-display font-bold text-primary-navy uppercase tracking-wider mb-1.5 leading-snug w-full">
                                 UX/UI & Brand Design
                               </h2>
-                              <p id="uxui-header-description" className="text-[11px] text-primary-navy/80 leading-relaxed font-sans font-medium w-[172.484px] max-w-full">
+                              <p id="uxui-header-description" className="text-[11px] text-primary-navy/80 leading-relaxed font-sans font-medium w-full">
                                 J’apprécie énormément créer des identités de marque et réfléchir à de nouvelles interfaces utilisateur. Les trois premiers projets sont des projets purement UX/UI. Enfin, les trois suivants sont des projets de brand design.
                               </p>
                             </div>
@@ -273,17 +273,17 @@ export default function App() {
                               id="uxui-content-img"
                               src={cheimaNotebook}
                               alt="Illustration Cheïma"
-                              className="absolute right-0 bottom-0 w-36 h-36 sm:w-44 sm:h-44 object-contain z-30 pointer-events-none translate-x-2 translate-y-1"
+                              className="absolute right-0 bottom-0 w-32 h-32 sm:w-44 sm:h-44 object-contain z-30 pointer-events-none translate-x-1 translate-y-1"
                               referrerPolicy="no-referrer"
                             />
                           </div>
                         ) : activeTab === TabIndex.WebDev ? (
                           <div id="webdev-header-card" className="p-4 bg-white border border-secondary-sky/30 shadow-soft rounded-2xl flex gap-2 items-start relative min-h-[140px] overflow-visible">
-                            <div className="z-10 flex flex-col w-[172px] max-w-[65%] shrink-0">
-                              <h2 id="webdev-header-title" className="text-[16px] sm:text-[17px] font-display font-bold text-primary-navy uppercase tracking-wider mb-1.5 leading-snug">
+                            <div className="z-10 flex flex-col flex-1 max-w-[65%] shrink-0">
+                              <h2 id="webdev-header-title" className="text-[15px] sm:text-[17px] font-display font-bold text-primary-navy uppercase tracking-wider mb-1.5 leading-snug">
                                 Développement Web
                               </h2>
-                              <p id="webdev-header-description" className="text-[11px] text-primary-navy/80 leading-relaxed font-sans font-medium w-[155.307px] max-w-full">
+                              <p id="webdev-header-description" className="text-[11px] text-primary-navy/80 leading-relaxed font-sans font-medium w-full">
                                 Découvrez mes premiers pas en développement et conception web. Les projets ont été organisés par ordre chronologique. Chaque projet a débuté par une phase de maquettage puis de codage.
                               </p>
                             </div>
@@ -291,17 +291,17 @@ export default function App() {
                               id="webdev-content-img"
                               src={cheimaFocused}
                               alt="Illustration Cheïma Concentrée"
-                              className="absolute right-0 bottom-0 w-36 h-36 sm:w-44 sm:h-44 object-contain z-30 pointer-events-none translate-x-2 translate-y-1"
+                              className="absolute right-0 bottom-0 w-32 h-32 sm:w-44 sm:h-44 object-contain z-30 pointer-events-none translate-x-1 translate-y-1"
                               referrerPolicy="no-referrer"
                             />
                           </div>
                         ) : (
                           <div id="event-header-card" className="p-4 bg-white border border-secondary-sky/30 shadow-soft rounded-2xl flex gap-2 items-start relative min-h-[140px] overflow-visible">
-                            <div className="z-10 flex flex-col w-[172px] max-w-[65%] shrink-0">
-                              <h2 id="event-header-title" className="text-[16px] sm:text-[17px] font-display font-bold text-primary-navy uppercase tracking-wider mb-1.5 leading-snug">
+                            <div className="z-10 flex flex-col flex-1 max-w-[65%] shrink-0">
+                              <h2 id="event-header-title" className="text-[15px] sm:text-[17px] font-display font-bold text-primary-navy uppercase tracking-wider mb-1.5 leading-snug">
                                 Événementiel
                               </h2>
-                              <p id="event-header-description" className="text-[11px] text-primary-navy/80 leading-relaxed font-sans font-medium">
+                              <p id="event-header-description" className="text-[11px] text-primary-navy/80 leading-relaxed font-sans font-medium w-full">
                                 Au cours de mon cursus universitaire, j’ai eu l’opportunité de réaliser et diriger des projets événementiels, et d’organiser des événements qui ont accueilli le grand public.
                               </p>
                             </div>
@@ -309,7 +309,7 @@ export default function App() {
                               id="event-content-img"
                               src={cheimaInspired}
                               alt="Illustration Cheïma Inspirée"
-                              className="absolute right-0 bottom-0 w-36 h-36 sm:w-44 sm:h-44 object-contain z-30 pointer-events-none translate-x-2 translate-y-1"
+                              className="absolute right-0 bottom-0 w-32 h-32 sm:w-44 sm:h-44 object-contain z-30 pointer-events-none translate-x-1 translate-y-1"
                               referrerPolicy="no-referrer"
                             />
                           </div>

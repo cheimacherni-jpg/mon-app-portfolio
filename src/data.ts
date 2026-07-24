@@ -71,7 +71,7 @@ export const projects: Project[] = [
     id: "p_kivio",
     title: "🎮 Kivio — 📚 Application PC de pause étudiante",
     category: "uxui",
-    description: "Mon équipe et moi-même avons développé un prototype d’application visant les étudiants. L’objectif est d’encourager les étudiants à prendre des pauses entre chaque session de travail.\n\nKivio est donc une application PC qui programme une session de travail et un temps de pause. Durant le temps de pause, l’utilisateur accède à des parties de jeux en ligne en même temps que d’autres étudiants.",
+    description: "Mon équipe et moi-même avons développé un prototype d’application visant les étudiants. L’objectif est d’encourager les étudiants à prendre des pauses entre chaque session de travail.\n\nKivio est donc une application PC qui programme une session de travail et un temps de pause. Durant le temps de pause, l’utilisateur accède à des parties de jeux en ligne en même temps que d’autres étudiants. Ainsi les étudiants connectés partagent un moment de détente ensemble renforçant ainsi les liens sociaux même à distance.",
     tags: ["Figma", "Gamification", "Design System", "EdTech"],
     images: [
       kivioImg,
@@ -137,7 +137,7 @@ export const projects: Project[] = [
   },
   {
     id: "p_pairedure",
-    title: "👟 Pairedure — Création d'une marque de sneakers éco-responsables",
+    title: "👟 Pairdure — Création d'une marque de sneakers éco-responsables",
     category: "uxui",
     description: "Durant un business game, mon équipe et moi avons créé une marque de sneakers dite « éco-responsable ». Nous avons nous-mêmes réfléchi à une identité visuelle pour notre marque.",
     tags: ["Social Mobile", "Empathy Map", "Onboarding", "UI Design"],
@@ -152,7 +152,7 @@ export const projects: Project[] = [
   // Développement Web
   {
     id: "p_rapture",
-    title: "⚡ Rapture — 🎨 CMS Front-End pour Créatifs",
+    title: "⚡ Rapture",
     category: "web",
     description: "L’objectif de ce premier projet était de se familiariser avec les langages HTML et CSS en copiant la maquette et les indications de style fournies au préalable.",
     tags: ["React", "TypeScript", "Tailwind", "Drag & Drop"],
@@ -166,7 +166,7 @@ export const projects: Project[] = [
   },
   {
     id: "p_modern_lifestyle",
-    title: "📖 Modern Lifestyle — 🌐 Magazine Interactif",
+    title: "📖 Modern Lifestyle",
     category: "web",
     description: "Pour ce second projet, j’ai effectué une veille et pris une maquette basse fidélité qui ressemblait fortement à la structure que je souhaitais appliquer à ma landing page. J’ai réalisé et construit moi-même la charte graphique et l’identité visuelle du projet.",
     tags: ["React", "Framer Motion", "Tailwind CSS", "SSG"],
@@ -181,7 +181,7 @@ export const projects: Project[] = [
   },
   {
     id: "p_bonpied",
-    title: "👟 BonPied — ♻️ Boutique en Ligne de Chaussures Recyclées",
+    title: "👟 BonPied",
     category: "web",
     description: "Ce troisième projet est le premier que j’ai réalisé avec du JavaScript et un fichier JSON (déjà fournis). J’ai également construit moi-même ma maquette basse fidélité avec Figma ainsi que la charte graphique.",
     tags: ["React", "Context API", "Tailwind", "E-Commerce"],
@@ -196,7 +196,7 @@ export const projects: Project[] = [
   },
   {
     id: "p_doors",
-    title: "🚪 DOORS — 🌌 Expérience Immersive d'Art Numérique",
+    title: "🚪 DOORS",
     category: "web",
     description: "Ce quatrième projet est le second projet que j’ai réalisé en toute autonomie. J’ai réalisé la charte graphique, le style et le logo. Puis j’ai construit les maquettes basse et haute fidélité avant de coder la landing page.",
     tags: ["React", "Web Audio API", "Tailwind", "Creative Coding"],
