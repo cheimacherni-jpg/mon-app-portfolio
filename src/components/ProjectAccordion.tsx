@@ -122,16 +122,17 @@ export default function ProjectAccordion({
                         </a>
                       )}
 
-                      {project.liveUrl && !project.prototypeUrl && (
+                      {project.liveUrl && (
                         <a
                           id={`action-live-${project.id}`}
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 min-w-[130px] py-[10px] px-3 bg-primary-navy hover:bg-primary-navy/90 text-white text-[13px] text-center font-display font-bold rounded-xl flex items-center justify-center gap-1.5 transition-transform active:scale-[0.98]"
+                          className="py-[10px] px-4 bg-primary-navy hover:bg-primary-navy/90 text-white text-[13px] text-center font-display font-bold rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-[0.98]"
                         >
-                          <ExternalLink size={13} className="text-secondary-sky" />
-                          TESTER LA DÉMO LIVE
+                          <ExternalLink size={14} className="text-secondary-sky" />
+                          <span>Voir la page</span>
+                          <ArrowRight size={14} className="text-secondary-sky" />
                         </a>
                       )}
                     </div>

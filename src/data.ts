@@ -207,7 +207,8 @@ export const projects: Project[] = [
       doorsImg3,
       doorsImg4
     ],
-    githubUrl: "https://github.com/cheimacherni-jpg/Escape_game_DOORS-project-cheimacherni.git"
+    githubUrl: "https://github.com/cheimacherni-jpg/Escape_game_DOORS-project-cheimacherni.git",
+    liveUrl: "https://escape-game-doors-project-cheimache.vercel.app/"
   },
 
   // Évènementiel
