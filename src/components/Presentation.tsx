@@ -107,8 +107,24 @@ export default function Presentation({ onTabChange }: PresentationProps) {
       {/* 1. Welcome Profile Card with Detached Overlapping Avatar */}
       <div id="profile-card" className="bg-white border border-secondary-sky/40 shadow-soft rounded-2xl p-4 sm:p-5 relative mt-8 pt-12 w-full max-w-full mx-auto">
         
-        {/* DETACHED OVERLAPPING AVATAR - Welcoming Fist Pump Pose */}
-        <div className="flex flex-col">
+        {/* DETACHED OVERLAPPING AVATAR */}
+        <div className="absolute -top-11 -right-2 w-28 h-28 rounded-full border-2 border-secondary-sky/40 bg-white overflow-hidden shadow-soft-lg z-20">
+          <img
+            id="profile-card-avatar-img"
+            src={cheimaWelcome}
+            alt="Cheïma Cherni"
+            className="w-full h-full object-cover scale-110 mix-blend-multiply"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+
+        {/* Status Badge */}
+        <div className="absolute -top-3 left-4 bg-primary-navy text-accent-gold border border-primary-navy px-2.5 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider flex items-center gap-1 z-10">
+          <Star size={9} className="fill-accent-gold stroke-accent-gold" />
+          Creative Tech
+        </div>
+
+        <div className="flex flex-col pr-16">
           <span className="text-[13px] font-mono tracking-wider text-primary-navy/50 uppercase font-black">Mon Profil</span>
           <h1 className="text-[25px] font-display font-bold text-primary-navy leading-none mt-1">Cheïma Cherni</h1>
           <p className="text-2xs font-bold text-primary-navy/70 mt-0 pt-[13px] font-mono">Digital & Numérique</p>
