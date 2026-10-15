@@ -64,6 +64,12 @@ import openDoorsImg1 from "./assets/images/regenerated_image_1784847583604.png";
 import openDoorsImg2 from "./assets/images/regenerated_image_1784847585696.png";
 import openDoorsImg3 from "./assets/images/regenerated_image_1784847587178.png";
 import openDoorsImg4 from "./assets/images/regenerated_image_1784847588179.png";
+import livrioLogo from "./assets/images/regenerated_image_1792083585153.png";
+import livrioImg0 from "./assets/images/regenerated_image_1792083895989.png";
+import livrioImg1 from "./assets/images/regenerated_image_1792083720334.png";
+import livrioImg2 from "./assets/images/regenerated_image_1792083720964.png";
+import livrioImg3 from "./assets/images/regenerated_image_1792083721409.png";
+import livrioImg4 from "./assets/images/regenerated_image_1792083721942.png";
 
 export const projects: Project[] = [
   // UX/UI & Brand Design
@@ -209,6 +215,21 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/cheimacherni-jpg/Escape_game_DOORS-project-cheimacherni.git",
     liveUrl: "https://escape-game-doors-project-cheimache.vercel.app/"
+  },
+  {
+    id: "p_livrio",
+    title: "📚 Livrio",
+    category: "web",
+    description: "Il s’agit d’un projet réalisé durant un stage de perfectionnement en tout autonomie durant le mois de septembre 2026.\n\nPendant un mois, en duo avec ma collaboratrice nous avons développé une application web sur le thème de la lecture. En tant que passionnées et  fans de lectures, nous voulions créer une plateforme dont nous avions besoin et qui nous ressemble pour partager nos lectures avec nos amis\n\nPour ma part, j’ai crée l’identité visuelle de notre projet et participé au maquettage de l’application. ainsi qu’à l’intégration front-end du projet. J’ai construit le squelette des pages en HTML, styliser en CSS et dynamisé l’application en Javacsript",
+    tags: ["HTML5", "CSS3", "JavaScript", "Figma", "Identité Visuelle"],
+    images: [
+      livrioLogo,
+      livrioImg0,
+      livrioImg1,
+      livrioImg2,
+      livrioImg3,
+      livrioImg4
+    ]
   },
 
   // Évènementiel

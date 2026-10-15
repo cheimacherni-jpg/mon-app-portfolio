@@ -1,6 +1,6 @@
 {
   "name": "Mon App Portfolio",
-  "description": "Application portfolio mobile-only de Cheïma Cherni avec métaphore de classeur physique, intercalaires et onglets empilés.",
+  "description": "Application portfolio interactive et responsive (Desktop PC & Mobile) de Cheïma Cherni avec métaphore de classeur physique, intercalaires et onglets empilés.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

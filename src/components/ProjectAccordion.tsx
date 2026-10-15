@@ -76,65 +76,82 @@ export default function ProjectAccordion({
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="px-4 pb-5 pt-4 border-t border-secondary-sky/20 flex flex-col gap-4 relative">
+                  <div className="px-4 sm:px-6 pb-6 pt-4 border-t border-secondary-sky/20 relative">
                     
-                    {/* Project Description */}
-                    <div>
-                      <p
-                        className="text-[11px] text-primary-navy leading-relaxed font-sans font-medium whitespace-pre-line"
-                        style={project.id === "p_apptivity" ? { width: "241.555px" } : undefined}
-                      >
-                        {project.description}
-                      </p>
-                    </div>
+                    {/* Responsive Grid: 2-columns on Desktop (lg:), stacked on mobile */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-start">
+                      
+                      {/* Left Column on Desktop (Col 5): Description & Action Buttons */}
+                      <div className="lg:col-span-5 flex flex-col justify-between gap-4 h-full">
+                        <div>
+                          <div className="flex items-center gap-1.5 flex-wrap mb-2">
+                            {project.tags.map((tag, i) => (
+                              <span key={i} className="text-[10px] font-mono font-semibold text-primary-navy/60 bg-secondary-sky/20 px-2 py-0.5 rounded-md">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          <p
+                            className="text-xs md:text-[13px] text-primary-navy leading-relaxed font-sans font-medium whitespace-pre-line"
+                          >
+                            {project.description}
+                          </p>
+                        </div>
 
-                    {/* Image Carousel (handles thumbnail and navigation clicks) */}
-                    <Carousel images={project.images} projectTitle={project.title} />
+                        {/* Action Buttons */}
+                        {(project.prototypeUrl || project.githubUrl || project.liveUrl) && (
+                          <div className="flex flex-col sm:flex-row lg:flex-col gap-2 pt-3 border-t border-secondary-sky/20">
+                            {project.prototypeUrl && (
+                              <a
+                                id={`action-proto-${project.id}`}
+                                href={project.prototypeUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full py-2.5 px-4 bg-primary-navy hover:bg-primary-navy/90 text-white text-xs md:text-[13px] text-center font-display font-bold rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-[0.98] shadow-soft-sm cursor-pointer"
+                              >
+                                <Figma size={15} className="text-secondary-sky shrink-0" />
+                                <span>TESTER LE PROTOTYPE FIGMA</span>
+                                <ArrowRight size={14} className="text-secondary-sky shrink-0" />
+                              </a>
+                            )}
 
-                    {/* Context Specific Action Buttons with clean styles */}
-                    <div className="flex flex-wrap justify-center gap-2 pt-3 border-t border-secondary-sky/20">
-                      {project.prototypeUrl && (
-                        <a
-                          id={`action-proto-${project.id}`}
-                          href={project.prototypeUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 min-w-[130px] py-[10px] px-3 bg-primary-navy hover:bg-primary-navy/90 text-white text-[12px] text-center font-display font-bold rounded-xl flex items-center justify-center gap-1.5 transition-transform active:scale-[0.98]"
-                        >
-                          <Figma size={14} className="text-secondary-sky" />
-                          <span>TESTER LE PROTOTYPE FIGMA</span>
-                          <ArrowRight size={14} className="text-secondary-sky" />
-                        </a>
-                      )}
+                            {project.githubUrl && (
+                              <a
+                                id={`action-git-${project.id}`}
+                                href={project.githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full py-2.5 px-4 bg-secondary-sky/30 text-primary-navy border border-secondary-sky/50 hover:bg-secondary-sky/50 text-xs md:text-[13px] text-center font-display font-bold rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-[0.98] cursor-pointer"
+                                title="Voir le code source sur GitHub"
+                              >
+                                <Github size={15} className="shrink-0" />
+                                <span>Voir le code sur GitHub</span>
+                                <ArrowRight size={14} className="shrink-0" />
+                              </a>
+                            )}
 
-                      {project.githubUrl && (
-                        <a
-                          id={`action-git-${project.id}`}
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="py-[10px] px-5 bg-secondary-sky/20 text-primary-navy border border-secondary-sky/40 hover:bg-secondary-sky/30 text-[13px] text-center font-display font-bold rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-[0.98]"
-                          title="Voir le code source sur GitHub"
-                        >
-                          <Github size={14} />
-                          <span>Voir le code</span>
-                          <ArrowRight size={14} />
-                        </a>
-                      )}
+                            {project.liveUrl && (
+                              <a
+                                id={`action-live-${project.id}`}
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full py-2.5 px-4 bg-primary-navy hover:bg-primary-navy/90 text-white text-xs md:text-[13px] text-center font-display font-bold rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-[0.98] shadow-soft-sm cursor-pointer"
+                              >
+                                <ExternalLink size={15} className="text-secondary-sky shrink-0" />
+                                <span>Voir la page en ligne</span>
+                                <ArrowRight size={14} className="text-secondary-sky shrink-0" />
+                              </a>
+                            )}
+                          </div>
+                        )}
+                      </div>
 
-                      {project.liveUrl && (
-                        <a
-                          id={`action-live-${project.id}`}
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="py-[10px] px-4 bg-primary-navy hover:bg-primary-navy/90 text-white text-[13px] text-center font-display font-bold rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-[0.98]"
-                        >
-                          <ExternalLink size={14} className="text-secondary-sky" />
-                          <span>Voir la page</span>
-                          <ArrowRight size={14} className="text-secondary-sky" />
-                        </a>
-                      )}
+                      {/* Right Column on Desktop (Col 7): Screenshot Carousel */}
+                      <div className="lg:col-span-7 w-full">
+                        <Carousel images={project.images} projectTitle={project.title} />
+                      </div>
+
                     </div>
                   </div>
                 </motion.div>

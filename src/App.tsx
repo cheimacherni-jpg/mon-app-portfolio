@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect } from "react";
-import { Folder, Smartphone, Award, Briefcase, Calendar, Info, Globe, Sparkles, FolderOpen, Heart, Search, HelpCircle, RefreshCw, Github, ArrowRight } from "lucide-react";
+import { Folder, Award, Briefcase, Calendar, Info, Globe, Sparkles, FolderOpen, Heart, Search, HelpCircle, RefreshCw, Github, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { projects } from "./data";
 import Presentation from "./components/Presentation";
@@ -136,56 +136,51 @@ export default function App() {
   const filteredProjects = getFilteredProjects();
 
   return (
-    <div className="w-full min-h-screen bg-[#FFF7F2] bg-anime-dots flex items-center justify-center p-0 md:p-4 font-sans text-primary-navy overflow-hidden select-none">
+    <div className="w-full h-screen h-[100dvh] bg-[#FFF7F2] font-sans text-primary-navy overflow-hidden select-none flex flex-col p-0 m-0">
       
-      {/* Viewport Lock Container - Mobile Device Mockup styled with deep navy borders */}
-      <div className="w-full max-w-[500px] h-screen h-[100dvh] md:h-[840px] md:max-h-[92vh] bg-white md:rounded-[40px] shadow-soft-lg relative overflow-hidden flex flex-col border-0 md:border-[10px] md:border-primary-navy ring-0 md:ring-4 md:ring-primary-navy/10">
+      {/* Full Screen Application Container - No frame, no border around, fills 100% of PC and mobile screen */}
+      <div className="w-full h-full relative overflow-hidden flex flex-col bg-[#FFF7F2] border-0 ring-0 shadow-none rounded-none m-0 p-0">
         
-        {/* Status Bar / Notch Simulation */}
-        <div className="hidden md:flex absolute top-0 left-0 right-0 h-6 bg-primary-navy items-center justify-between px-8 z-50 text-white/80 text-[10px] font-mono">
-          <span>09:41</span>
-          <div className="w-24 h-4 bg-primary-navy rounded-b-xl absolute left-1/2 -translate-x-1/2 border-x border-b border-primary-navy" />
-          <div className="flex items-center gap-1.5 font-bold">
-            <Sparkles size={10} className="text-accent-gold animate-pulse" />
-            <span className="font-display">Mon App Portfolio</span>
-          </div>
-        </div>
-
         {/* Outer Binder Cover background */}
-        <div className="flex-1 flex flex-col bg-[#FFF7F2] bg-card-grid pt-0 md:pt-6 pb-16 relative overflow-hidden">
+        <div className="flex-1 flex flex-col bg-[#FFF7F2] bg-card-grid pb-16 md:pb-20 relative overflow-hidden">
           
           {/* Notebook Binder Spine Holes on the left */}
-          <div className="absolute left-1.5 top-12 bottom-20 flex flex-col justify-around z-30 pointer-events-none">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="w-3.5 h-3.5 rounded-full bg-[#111E38]/10 border border-[#111E38]/20 shadow-inner" />
+          <div className="absolute left-1.5 md:left-2 lg:left-3 top-14 bottom-24 flex flex-col justify-around z-30 pointer-events-none">
+            {Array.from({ length: 9 }).map((_, i) => (
+              <div key={i} className="w-3.5 h-3.5 md:w-4 md:h-4 rounded-full bg-[#111E38]/10 border border-[#111E38]/20 shadow-inner" />
             ))}
           </div>
 
           {/* Elegant binder spine shadow */}
-          <div className="absolute left-6 top-0 bottom-16 w-1.5 bg-[#111E38]/5 z-20 pointer-events-none" />
+          <div className="absolute left-6 md:left-8 lg:left-10 top-0 bottom-16 md:bottom-20 w-1.5 bg-[#111E38]/5 z-20 pointer-events-none" />
 
-          {/* Active Folder Header with clean minimalist layout */}
-          <div className="px-5 pl-12 pt-4 pb-2.5 flex items-center justify-between z-10 relative">
+          {/* Active Folder Header with clean minimalist full-width layout */}
+          <div className="px-4 sm:px-8 lg:px-12 pl-12 sm:pl-16 lg:pl-20 pr-4 sm:pr-8 lg:pr-12 py-3 md:py-4 flex items-center justify-between z-10 relative border-b border-[#111E38]/10 bg-white/40 backdrop-blur-xs">
             <div className="flex flex-col">
-              <span className="text-[9px] font-mono font-bold tracking-wider text-primary-navy/60">
+              <span className="text-[9px] md:text-[11px] font-mono font-bold tracking-wider text-primary-navy/60">
                 {currentCategoryLabel()}
               </span>
               <button
                 onClick={() => handleTabChange(TabIndex.Accueil)}
-                className="text-sm font-display font-bold text-primary-navy uppercase tracking-tight flex items-center gap-1.5 hover:opacity-85 transition-all cursor-pointer text-left focus:outline-none"
+                className="text-sm md:text-lg font-display font-bold text-primary-navy uppercase tracking-tight flex items-center gap-1.5 hover:opacity-85 transition-all cursor-pointer text-left focus:outline-none"
               >
-                <span className="text-primary-navy text-[10px] leading-none">●</span>
-                PORTFOLIO
+                <span className="text-primary-navy text-[10px] md:text-xs leading-none">●</span>
+                PORTFOLIO — CHEÏMA CHERNI
               </button>
             </div>
             
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 md:gap-5">
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-800 text-[10px] md:text-xs font-mono font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Disponible pour opportunités</span>
+              </div>
+
               <button
                 onClick={() => handleTabChange(TabIndex.Accueil)}
-                className={`text-2xs font-sans font-semibold tracking-tight transition-all cursor-pointer ${
+                className={`text-xs md:text-sm font-sans font-semibold tracking-tight transition-all cursor-pointer ${
                   activeTab === TabIndex.Accueil
                     ? "text-primary-navy font-bold underline decoration-secondary-sky decoration-2 underline-offset-2"
-                    : "text-primary-navy/50 hover:text-primary-navy"
+                    : "text-primary-navy/60 hover:text-primary-navy"
                 }`}
               >
                 Accueil
@@ -194,17 +189,17 @@ export default function App() {
               <button
                 id="help-desk-trigger"
                 onClick={() => setShowHelpDesk(true)}
-                className="p-1 px-2 bg-primary-navy text-white rounded-lg text-[8px] font-display font-bold tracking-wider flex items-center gap-0.5 cursor-pointer shadow-soft-sm active:scale-95"
+                className="p-1.5 px-3 bg-primary-navy text-white rounded-lg text-[9px] md:text-[11px] font-display font-bold tracking-wider flex items-center gap-1.5 cursor-pointer shadow-soft-sm hover:bg-primary-navy/90 active:scale-95 transition-all"
               >
-                <HelpCircle size={8} className="text-accent-gold" />
+                <HelpCircle size={12} className="text-accent-gold" />
                 AIDE
               </button>
             </div>
           </div>
 
-          {/* Main Content Area (Scrollable warm soft peach notebook paper) */}
-          <div className="flex-1 px-3 sm:px-4 pl-10 sm:pl-12 pr-2 sm:pr-3 pb-4 overflow-y-auto custom-scrollbar select-text relative z-10 flex flex-col items-center">
-            <div className="bg-[#FFF7F2] rounded-2xl min-h-full p-3 sm:p-4 relative overflow-visible w-full max-w-full">
+          {/* Main Content Area (Scrollable warm soft peach notebook paper, occupying full width) */}
+          <div className="flex-1 px-4 sm:px-8 lg:px-12 pl-12 sm:pl-16 lg:pl-20 pr-4 sm:pr-8 lg:pr-12 pb-6 overflow-y-auto custom-scrollbar select-text relative z-10 flex flex-col items-center">
+            <div className="bg-[#FFF7F2] min-h-full p-2 sm:p-5 lg:p-8 relative overflow-visible w-full max-w-7xl">
               
               {/* Binder Paper Stitching Line */}
               <div className="absolute left-1.5 top-0 bottom-0 w-[1px] border-l border-dashed border-secondary-sky/30" />
@@ -258,14 +253,14 @@ export default function App() {
                     
                     {activeTab !== TabIndex.Presentation && activeTab !== TabIndex.Accueil && (
                       <div className="flex flex-col gap-4 py-1 w-full max-w-full mx-auto">
-                                           {/* Section Description Header Card */}
+                        {/* Section Description Header Card */}
                         {activeTab === TabIndex.UxUi ? (
-                          <div id="uxui-header-card" className="p-4 bg-white border border-secondary-sky/30 shadow-soft rounded-2xl flex gap-2 items-start relative min-h-[140px] overflow-visible">
-                            <div className="z-10 flex flex-col flex-1 max-w-[65%] shrink-0">
-                              <h2 id="uxui-header-title" className="text-[15px] sm:text-[17px] font-display font-bold text-primary-navy uppercase tracking-wider mb-1.5 leading-snug w-full">
+                          <div id="uxui-header-card" className="p-4 sm:p-5 md:p-6 bg-white border border-secondary-sky/30 shadow-soft rounded-2xl md:rounded-3xl flex gap-2 items-start relative min-h-[140px] md:min-h-[160px] overflow-visible">
+                            <div className="z-10 flex flex-col flex-1 max-w-[65%] sm:max-w-[70%] md:max-w-[75%] shrink-0">
+                              <h2 id="uxui-header-title" className="text-[16px] sm:text-[18px] md:text-xl font-display font-bold text-primary-navy uppercase tracking-wider mb-1.5 leading-snug w-full">
                                 UX/UI & Brand Design
                               </h2>
-                              <p id="uxui-header-description" className="text-[11px] text-primary-navy/80 leading-relaxed font-sans font-medium w-full">
+                              <p id="uxui-header-description" className="text-[11px] sm:text-xs md:text-[13px] text-primary-navy/80 leading-relaxed font-sans font-medium w-full">
                                 J’apprécie énormément créer des identités de marque et réfléchir à de nouvelles interfaces utilisateur. Les trois premiers projets sont des projets purement UX/UI. Enfin, les trois suivants sont des projets de brand design.
                               </p>
                             </div>
@@ -273,17 +268,17 @@ export default function App() {
                               id="uxui-content-img"
                               src={cheimaNotebook}
                               alt="Illustration Cheïma"
-                              className="absolute right-0 bottom-0 w-32 h-32 sm:w-44 sm:h-44 object-contain z-30 pointer-events-none translate-x-1 translate-y-1"
+                              className="absolute right-0 md:right-2 bottom-0 w-32 h-32 sm:w-44 sm:h-44 md:w-52 md:h-52 object-contain z-30 pointer-events-none translate-x-1 translate-y-1"
                               referrerPolicy="no-referrer"
                             />
                           </div>
                         ) : activeTab === TabIndex.WebDev ? (
-                          <div id="webdev-header-card" className="p-4 bg-white border border-secondary-sky/30 shadow-soft rounded-2xl flex gap-2 items-start relative min-h-[140px] overflow-visible">
-                            <div className="z-10 flex flex-col flex-1 max-w-[65%] shrink-0">
-                              <h2 id="webdev-header-title" className="text-[15px] sm:text-[17px] font-display font-bold text-primary-navy uppercase tracking-wider mb-1.5 leading-snug">
+                          <div id="webdev-header-card" className="p-4 sm:p-5 md:p-6 bg-white border border-secondary-sky/30 shadow-soft rounded-2xl md:rounded-3xl flex gap-2 items-start relative min-h-[140px] md:min-h-[160px] overflow-visible">
+                            <div className="z-10 flex flex-col flex-1 max-w-[65%] sm:max-w-[70%] md:max-w-[75%] shrink-0">
+                              <h2 id="webdev-header-title" className="text-[16px] sm:text-[18px] md:text-xl font-display font-bold text-primary-navy uppercase tracking-wider mb-1.5 leading-snug">
                                 Développement Web
                               </h2>
-                              <p id="webdev-header-description" className="text-[11px] text-primary-navy/80 leading-relaxed font-sans font-medium w-full">
+                              <p id="webdev-header-description" className="text-[11px] sm:text-xs md:text-[13px] text-primary-navy/80 leading-relaxed font-sans font-medium w-full">
                                 Découvrez mes premiers pas en développement et conception web. Les projets ont été organisés par ordre chronologique. Chaque projet a débuté par une phase de maquettage puis de codage.
                               </p>
                             </div>
@@ -291,17 +286,17 @@ export default function App() {
                               id="webdev-content-img"
                               src={cheimaFocused}
                               alt="Illustration Cheïma Concentrée"
-                              className="absolute right-0 bottom-0 w-32 h-32 sm:w-44 sm:h-44 object-contain z-30 pointer-events-none translate-x-1 translate-y-1"
+                              className="absolute right-0 md:right-2 bottom-0 w-32 h-32 sm:w-44 sm:h-44 md:w-52 md:h-52 object-contain z-30 pointer-events-none translate-x-1 translate-y-1"
                               referrerPolicy="no-referrer"
                             />
                           </div>
                         ) : (
-                          <div id="event-header-card" className="p-4 bg-white border border-secondary-sky/30 shadow-soft rounded-2xl flex gap-2 items-start relative min-h-[140px] overflow-visible">
-                            <div className="z-10 flex flex-col flex-1 max-w-[65%] shrink-0">
-                              <h2 id="event-header-title" className="text-[15px] sm:text-[17px] font-display font-bold text-primary-navy uppercase tracking-wider mb-1.5 leading-snug">
+                          <div id="event-header-card" className="p-4 sm:p-5 md:p-6 bg-white border border-secondary-sky/30 shadow-soft rounded-2xl md:rounded-3xl flex gap-2 items-start relative min-h-[140px] md:min-h-[160px] overflow-visible">
+                            <div className="z-10 flex flex-col flex-1 max-w-[65%] sm:max-w-[70%] md:max-w-[75%] shrink-0">
+                              <h2 id="event-header-title" className="text-[16px] sm:text-[18px] md:text-xl font-display font-bold text-primary-navy uppercase tracking-wider mb-1.5 leading-snug">
                                 Événementiel
                               </h2>
-                              <p id="event-header-description" className="text-[11px] text-primary-navy/80 leading-relaxed font-sans font-medium w-full">
+                              <p id="event-header-description" className="text-[11px] sm:text-xs md:text-[13px] text-primary-navy/80 leading-relaxed font-sans font-medium w-full">
                                 Au cours de mon cursus universitaire, j’ai eu l’opportunité de réaliser et diriger des projets événementiels, et d’organiser des événements qui ont accueilli le grand public.
                               </p>
                             </div>
@@ -309,7 +304,7 @@ export default function App() {
                               id="event-content-img"
                               src={cheimaInspired}
                               alt="Illustration Cheïma Inspirée"
-                              className="absolute right-0 bottom-0 w-32 h-32 sm:w-44 sm:h-44 object-contain z-30 pointer-events-none translate-x-1 translate-y-1"
+                              className="absolute right-0 md:right-2 bottom-0 w-32 h-32 sm:w-44 sm:h-44 md:w-52 md:h-52 object-contain z-30 pointer-events-none translate-x-1 translate-y-1"
                               referrerPolicy="no-referrer"
                             />
                           </div>
@@ -325,10 +320,8 @@ export default function App() {
                             setOpenProjectId={setOpenProjectId}
                           />
                         ) : (
-                          /* 5. CONFUSED AVATAR EMPTY STATE / NO RESULTS */
+                          /* CONFUSED AVATAR EMPTY STATE / NO RESULTS */
                           <div id="empty-state-card" className="bg-white border border-secondary-sky/30 shadow-soft rounded-2xl p-6 text-center relative overflow-hidden mt-6 mb-6 pt-12">
-                            
-                            {/* OVERLAPPING CONFUSED AVATAR */}
                             <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full border border-secondary-sky/30 bg-white overflow-hidden shadow-soft z-20">
                               <img
                                 src={cheimaConfused}
@@ -362,20 +355,22 @@ export default function App() {
 
                         {/* GitHub Server Link Card for WebDev Tab */}
                         {activeTab === TabIndex.WebDev && (
-                          <div id="webdev-github-card" className="mt-3 mb-10 p-4 bg-white border border-secondary-sky/30 shadow-soft rounded-2xl flex flex-col items-center text-center gap-2.5">
-                            <div className="flex items-center gap-2 text-primary-navy font-display font-bold text-xs uppercase tracking-wider">
-                              <Github size={16} />
-                              <span>Mon Serveur GitHub</span>
+                          <div id="webdev-github-card" className="mt-3 mb-10 p-5 md:p-6 bg-white border border-secondary-sky/30 shadow-soft rounded-2xl md:rounded-3xl flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-4">
+                            <div className="flex flex-col gap-1 max-w-xl">
+                              <div className="flex items-center justify-center md:justify-start gap-2 text-primary-navy font-display font-bold text-sm uppercase tracking-wider">
+                                <Github size={18} />
+                                <span>Mon Serveur GitHub</span>
+                              </div>
+                              <p className="text-xs text-primary-navy/80 font-sans font-medium leading-relaxed">
+                                Découvrez l’ensemble de mes projets, dépôts de code et réalisations sur mon serveur GitHub.
+                              </p>
                             </div>
-                            <p className="text-[11px] text-primary-navy/80 font-sans font-medium leading-relaxed">
-                              Découvrez l’ensemble de mes projets, dépôts de code et réalisations sur mon serveur GitHub.
-                            </p>
                             <a
                               id="webdev-github-link-btn"
                               href="https://github.com/cheimacherni-jpg/liens-projets-portfolio-dev.git"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="w-full py-3 px-4 bg-primary-navy hover:bg-primary-navy/90 text-white font-mono text-xs font-bold rounded-xl shadow-soft transition-all duration-200 flex items-center justify-center gap-2 hover:translate-y-[-1px] active:scale-[0.98] cursor-pointer"
+                              className="w-full md:w-auto shrink-0 py-3 px-5 bg-primary-navy hover:bg-primary-navy/90 text-white font-mono text-xs font-bold rounded-xl shadow-soft transition-all duration-200 flex items-center justify-center gap-2 hover:translate-y-[-1px] active:scale-[0.98] cursor-pointer"
                             >
                               <Github size={15} className="text-secondary-sky" />
                               <span>Accéder à mon serveur GitHub</span>
@@ -393,19 +388,19 @@ export default function App() {
           </div>
 
           {/* Sticky physical folder binder tabs navigation stacked at the bottom - SOLID simple tabs */}
-          <div className="absolute bottom-0 left-0 right-0 h-16 bg-primary-navy border-t border-primary-navy flex items-end justify-between px-1.5 pb-0.5 z-40 shadow-2xl" style={{ marginTop: "10px" }}>
+          <div className="absolute bottom-0 left-0 right-0 h-16 md:h-18 lg:h-20 bg-primary-navy border-t border-primary-navy flex items-end justify-between px-1.5 md:px-8 lg:px-12 pb-0.5 md:pb-1 z-40 shadow-2xl">
             
             {/* Tab 1: Présentation */}
             <button
               id="tab-btn-presentation"
               onClick={() => handleTabChange(TabIndex.Presentation)}
-              className={`folder-tab-modern flex-1 flex flex-col items-center justify-center pt-3 pb-2 px-0.5 text-center cursor-pointer font-display leading-none ${
+              className={`folder-tab-modern flex-1 flex flex-col items-center justify-center pt-3 pb-2 px-1 text-center cursor-pointer font-display leading-none transition-all ${
                 activeTab === TabIndex.Presentation
-                  ? "bg-[#FFF7F2] text-primary-navy font-bold text-[9px] h-13 z-30 -translate-y-1 shadow-soft"
-                  : "bg-[#111E38] text-white/70 hover:bg-[#111E38]/90 text-[8px] font-bold h-11 border-t border-x border-white/5"
+                  ? "bg-[#FFF7F2] text-primary-navy font-bold text-[9px] md:text-xs lg:text-[13px] h-13 md:h-15 lg:h-16 z-30 -translate-y-1 md:-translate-y-1.5 shadow-soft"
+                  : "bg-[#111E38] text-white/70 hover:bg-[#111E38]/90 text-[8px] md:text-[11px] lg:text-xs font-bold h-11 md:h-13 lg:h-14 border-t border-x border-white/5"
               }`}
             >
-              <Briefcase size={11} className="mb-0.5" />
+              <Briefcase size={12} className="mb-0.5 md:mb-1 md:w-4 md:h-4" />
               <span className="truncate w-full max-w-full">Présentation</span>
             </button>
 
@@ -413,44 +408,53 @@ export default function App() {
             <button
               id="tab-btn-uxui"
               onClick={() => handleTabChange(TabIndex.UxUi)}
-              className={`folder-tab-modern flex-1 flex flex-col items-center justify-center pt-3 pb-2 px-0.5 text-center cursor-pointer font-display leading-none -ml-1 ${
+              className={`folder-tab-modern flex-1 flex flex-col items-center justify-center pt-3 pb-2 px-1 text-center cursor-pointer font-display leading-none -ml-1 transition-all ${
                 activeTab === TabIndex.UxUi
-                  ? "bg-[#CBE4F9] text-primary-navy font-bold text-[9px] h-13 z-30 -translate-y-1 shadow-soft"
-                  : "bg-[#111E38] text-white/70 hover:bg-[#111E38]/90 text-[8px] font-bold h-11 border-t border-x border-white/5"
+                  ? "bg-[#CBE4F9] text-primary-navy font-bold text-[9px] md:text-xs lg:text-[13px] h-13 md:h-15 lg:h-16 z-30 -translate-y-1 md:-translate-y-1.5 shadow-soft"
+                  : "bg-[#111E38] text-white/70 hover:bg-[#111E38]/90 text-[8px] md:text-[11px] lg:text-xs font-bold h-11 md:h-13 lg:h-14 border-t border-x border-white/5"
               }`}
             >
-              <Award size={11} className="mb-0.5" />
-              <span className="truncate w-full max-w-full">UX/UI</span>
+              <Award size={12} className="mb-0.5 md:mb-1 md:w-4 md:h-4" />
+              <span className="truncate w-full max-w-full">
+                <span className="hidden sm:inline">UX/UI & Brand Design</span>
+                <span className="sm:hidden">UX/UI</span>
+              </span>
             </button>
 
             {/* Tab 3: Développement Web */}
             <button
               id="tab-btn-webdev"
               onClick={() => handleTabChange(TabIndex.WebDev)}
-              className={`folder-tab-modern flex-1 flex flex-col items-center justify-center pt-3 pb-2 px-0.5 text-center cursor-pointer font-display leading-none -ml-1 border-t border-x ${
+              className={`folder-tab-modern flex-1 flex flex-col items-center justify-center pt-3 pb-2 px-1 text-center cursor-pointer font-display leading-none -ml-1 border-t border-x transition-all ${
                 activeTab === TabIndex.WebDev
-                  ? "text-primary-navy font-bold text-[9px] h-13 z-30 -translate-y-1 shadow-soft"
-                  : "bg-[#111E38] text-white/70 hover:bg-[#111E38]/90 text-[8px] font-bold h-11 border-white/5"
+                  ? "text-primary-navy font-bold text-[9px] md:text-xs lg:text-[13px] h-13 md:h-15 lg:h-16 z-30 -translate-y-1 md:-translate-y-1.5 shadow-soft"
+                  : "bg-[#111E38] text-white/70 hover:bg-[#111E38]/90 text-[8px] md:text-[11px] lg:text-xs font-bold h-11 md:h-13 lg:h-14 border-white/5"
               }`}
               style={activeTab === TabIndex.WebDev ? { backgroundColor: "#cdb49e", borderColor: "#cdb49e" } : undefined}
             >
-              <Globe size={11} className="mb-0.5" />
-              <span className="truncate w-full max-w-full">Dév Web</span>
+              <Globe size={12} className="mb-0.5 md:mb-1 md:w-4 md:h-4" />
+              <span className="truncate w-full max-w-full">
+                <span className="hidden sm:inline">Développement Web</span>
+                <span className="sm:hidden">Dév Web</span>
+              </span>
             </button>
 
             {/* Tab 4: Evènementiel */}
             <button
               id="tab-btn-event"
               onClick={() => handleTabChange(TabIndex.Event)}
-              className={`folder-tab-modern flex-1 flex flex-col items-center justify-center pt-3 pb-2 px-0.5 text-center cursor-pointer font-display leading-none -ml-1 border-t border-x ${
+              className={`folder-tab-modern flex-1 flex flex-col items-center justify-center pt-3 pb-2 px-1 text-center cursor-pointer font-display leading-none -ml-1 border-t border-x transition-all ${
                 activeTab === TabIndex.Event
-                  ? "text-primary-navy font-bold text-[9px] h-13 z-30 -translate-y-1 shadow-soft"
-                  : "bg-[#111E38] text-white/70 hover:bg-[#111E38]/90 text-[8px] font-bold h-11 border-white/5"
+                  ? "text-primary-navy font-bold text-[9px] md:text-xs lg:text-[13px] h-13 md:h-15 lg:h-16 z-30 -translate-y-1 md:-translate-y-1.5 shadow-soft"
+                  : "bg-[#111E38] text-white/70 hover:bg-[#111E38]/90 text-[8px] md:text-[11px] lg:text-xs font-bold h-11 md:h-13 lg:h-14 border-white/5"
               }`}
               style={activeTab === TabIndex.Event ? { backgroundColor: "#eadece", borderColor: "#eadece" } : undefined}
             >
-              <Calendar size={11} className="mb-0.5" />
-              <span className="truncate w-full max-w-full">Évènements</span>
+              <Calendar size={12} className="mb-0.5 md:mb-1 md:w-4 md:h-4" />
+              <span className="truncate w-full max-w-full">
+                <span className="hidden sm:inline">Événementiel</span>
+                <span className="sm:hidden">Évènements</span>
+              </span>
             </button>
 
           </div>
